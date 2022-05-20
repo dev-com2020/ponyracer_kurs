@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { JwtInterceptor } from './jwt.interceptor';
 import { BetComponent } from './bet/bet.component';
+import { LiveComponent } from './live/live.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { BetComponent } from './bet/bet.component';
     FromNowPipe, 
     HomeComponent, 
     RegisterComponent, 
-    LoginComponent, BetComponent],
+    LoginComponent, BetComponent, LiveComponent],
   imports: [BrowserModule, ReactiveFormsModule ,FormsModule,HttpClientModule, RouterModule.forRoot(ROUTES)],
   providers: [
     {provide: HTTP_INTERCEPTORS, useExisting: JwtInterceptor, multi: true}
