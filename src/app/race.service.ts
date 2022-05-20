@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 import { RaceModel } from './models/race.model';
 
@@ -14,10 +15,18 @@ constructor(private http: HttpClient) {}
   list(): Observable<Array<RaceModel>> {
     
     const params = { status: 'PENDING'};
-    return this.http.get<Array<RaceModel>>('https://ponyracer.ninja-squad.com/api/races', { params });
-    
-    
-     
+    return this.http.get<Array<RaceModel>>(`${environment.baseUrl}/api/races`, { params });
+  }
+
+    get(raceId: number): Observable<RaceModel>{
+      return this.http.get<RaceModel>(`${environment.baseUrl}/api/races/${raceId}`);
+    }
+
+    bet(raceId: number, ponyId: number): Observable<RaceModel> {
+      return this.http.post<RaceModel>(`${environment.baseUrl}/api/races/${raceId}/bets`,{ ponyId });
+    }
+
+  }
     // return of([
     //   {
     //     id: 12,
@@ -44,5 +53,4 @@ constructor(private http: HttpClient) {}
     //     startInstant: '2020-02-18T08:03:00Z'
     //   }
     // ]).pipe(delay(500));
-  }
-}
+ 

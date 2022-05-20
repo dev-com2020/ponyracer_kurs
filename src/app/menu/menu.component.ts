@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UserModel } from '../models/user.model';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pr-menu',
@@ -14,7 +15,7 @@ export class MenuComponent implements OnInit, OnDestroy{
   user: UserModel | null = null;
   userEventsSubscription: Subscription | null = null;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
 
   ngOnInit(): void {
@@ -25,10 +26,13 @@ export class MenuComponent implements OnInit, OnDestroy{
       this.userEventsSubscription?.unsubscribe();
   }
 
-
-
-
   toggleNavbar(): void {
     this.navbarCollapsed = !this.navbarCollapsed;
+  }
+
+  logout(event: Event): void{
+    event.preventDefault();
+    this.userService.logout();
+    this.router.navigate(['/']);
   }
 }
