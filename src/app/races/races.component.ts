@@ -14,6 +14,6 @@ export class RacesComponent implements OnInit {
   constructor(private raceService: RaceService) {}
 
   ngOnInit(): void {
-    this.raceService.list().subscribe(races => this.races = races);
+    this.raceService.list().subscribe(races => (this.races = races));
   }
 }
