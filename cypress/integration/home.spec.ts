@@ -26,6 +26,13 @@ describe('Ponyracer', () => {
 
   it('should display a race list', () => {
     cy.visit('/');
-    cy.get('h2').should('have.length', 4);
+    cy.get('h2').should('have.length', 2);
+  });
+
+  it('should display ponies', () => {
+    cy.visit('/');
+    cy.get('figure').should('have.length', 10);
+    cy.get('img').should('have.length', 10);
+    cy.get('figcaption').should('have.length', 10);
   });
 });
