@@ -1,4 +1,4 @@
-<figure>
-    <img src='image.jpg' alt='missing'/>
-    <figcaption>Caption goes here</figcaption>
+<figure (click)="clicked()">
+    <img [src]="getPonyImageUrl()" [alt]="ponyModel.name"/>
+    <figcaption>{{ ponyModel.name }}</figcaption>
   </figure>
