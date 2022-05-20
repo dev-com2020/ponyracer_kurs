@@ -36,6 +36,10 @@ constructor(private http: HttpClient, private wsService: WsService) {}
       return this.wsService.connect<LiveRaceModel>(`/race/${raceId}`).pipe(
         takeWhile(liveRace => liveRace.status !== 'FINISHED'),
         map(liveRace => liveRace.ponies));
-    }
+    
   }
- 
+
+  boost(raceId: number, ponyId: number):Observable<void>{
+    return this.http.post<void>(`${environment.baseUrl}/api/races/${raceId}/boosts`,{ ponyId });
+  }
+}
